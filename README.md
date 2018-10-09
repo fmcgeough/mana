@@ -119,19 +119,19 @@ Ethereum common tests are created for all clients to test against. We plan to pr
 
 - [VMTests](https://github.com/ethereum/tests/tree/develop/VMTests/vmTests) = 100% passing
 - [x] Frontier
-  - [BlockchainTests](https://github.com/ethereum/tests/tree/develop/BlockchainTests) (Includes GeneralStateTests) 1325/1325 = 100% passing
+  - [BlockchainTests](https://github.com/ethereum/tests/tree/develop/BlockchainTests) (Includes GeneralStateTests) Passing tests: 1267/1320 = 96.0%
   - [GeneralStateTests](https://github.com/ethereum/tests/tree/develop/GeneralStateTests) 1026/1026 = 100% passing
 - [x] Homestead
-  - [BlockchainTests](https://github.com/ethereum/tests/tree/develop/BlockchainTests) (Includes GeneralStateTests) 2231/2231 = 100% passing
+  - [BlockchainTests](https://github.com/ethereum/tests/tree/develop/BlockchainTests) (Includes GeneralStateTests) Passing tests: 2151/2203 = 97.6%
   - [GeneralStateTests](https://github.com/ethereum/tests/tree/develop/GeneralStateTests) 2059/2061 = 99.9% passing
-- [x] EIP150
-  - [BlockchainTests](https://github.com/ethereum/tests/tree/develop/BlockchainTests) (Includes GeneralStateTests) 1275/1275 = 100% passing
-  - [GeneralStateTests](https://github.com/ethereum/tests/tree/develop/GeneralStateTests) 1109/1113 = 99.6% passing
-- [x] EIP158
-  - [BlockchainTests](https://github.com/ethereum/tests/tree/develop/BlockchainTests) (Includes GeneralStateTests) 1232/1233 = 99.9% passing
+- [x] TangerineWhistle
+  - [BlockchainTests](https://github.com/ethereum/tests/tree/develop/BlockchainTests) (Includes GeneralStateTests) Passing tests: 1211/1262 = 96.0%
   - [GeneralStateTests](https://github.com/ethereum/tests/tree/develop/GeneralStateTests) 1176/1181 = 99.6% passing
+- [x] SpuriousDragon
+  - [BlockchainTests](https://github.com/ethereum/tests/tree/develop/BlockchainTests) (Includes GeneralStateTests) Passing tests: 983/1193 = 82.4%
+  - [GeneralStateTests](https://github.com/ethereum/tests/tree/develop/GeneralStateTests) 1109/1113 = 99.6% passing
 - [x] Byzantium
-  - [BlockchainTests](https://github.com/ethereum/tests/tree/develop/BlockchainTests) (Includes GeneralStateTests) 4915/4959 = 99.1% passing
+  - [BlockchainTests](https://github.com/ethereum/tests/tree/develop/BlockchainTests) (Includes GeneralStateTests) Passing tests: 73/4932 = 1.5%
   - [GeneralStateTests](https://github.com/ethereum/tests/tree/develop/GeneralStateTests) 4758/4784 = 99.5% passing
 - [ ] Constantinople: View the community [Constantinople Project Tracker](https://github.com/ethereum/pm/issues/53).
 
