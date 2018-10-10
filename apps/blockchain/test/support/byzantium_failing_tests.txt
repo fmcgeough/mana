@@ -4706,7 +4706,6 @@ bcForkStressTest/AmIOnEIP150.json
 bcForkStressTest/ForkStressTest.json
 bcGasPricerTest/RPC_API_Test.json
 bcGasPricerTest/highGasUsage.json
-bcGasPricerTest/notxs.json
 bcRandomBlockhashTest/randomStatetest109BC.json
 bcRandomBlockhashTest/randomStatetest113BC.json
 bcRandomBlockhashTest/randomStatetest127BC.json
@@ -4868,11 +4867,8 @@ bcValidBlockTest/SimpleTx.json
 bcValidBlockTest/SimpleTx3.json
 bcValidBlockTest/SimpleTx3LowS.json
 bcValidBlockTest/callRevert.json
-bcValidBlockTest/createRevert.json
-bcValidBlockTest/dataTx.json
 bcValidBlockTest/dataTx2.json
 bcValidBlockTest/diff1024.json
-bcValidBlockTest/gasLimitTooHigh.json
 bcValidBlockTest/gasLimitTooHigh2.json
 bcValidBlockTest/gasPrice0.json
 bcValidBlockTest/log1_correct.json
