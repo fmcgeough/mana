@@ -34,7 +34,7 @@ defmodule Blockchain.Chain do
           difficulty_bomb_delays: [{integer(), integer()}],
           dao_hardfork_transition: integer() | nil,
           dao_hardfork_accounts: [binary()] | nil,
-          dao_hardfork_accounts: binary() | nil
+          dao_hardfork_beneficiary: binary() | nil
         }
 
   @type params :: %{
