@@ -95,6 +95,8 @@ defmodule Blockchain.Chain do
           evm_config: EVM.Configuration.t()
         }
 
+  @dao_extra_range 9
+
   @doc """
   Loads a given blockchain, such as Homestead or Ropsten.
   This chain is used to set the genesis block and tweak parameters
@@ -255,7 +257,7 @@ defmodule Blockchain.Chain do
 
   def within_dao_fork_extra_range?(chain, block_number) do
     dao_hardfork = chain.engine["Ethash"][:dao_hardfork_transition]
-    block_number <= dao_hardfork && dao_hardfork <= dao_hardfork + 9
+    block_number >= dao_hardfork && block_number <= dao_hardfork + @dao_extra_range
   end
 
   @doc """
