@@ -245,8 +245,17 @@ defmodule Blockchain.Chain do
     reward
   end
 
-  def support_dao_fork?(block_number, chain) do
+  def support_dao_fork?(chain) do
+    !is_nil(chain.engine["Ethash"][:dao_hardfork_transition])
+  end
+
+  def dao_fork?(chain, block_number) do
     chain.engine["Ethash"][:dao_hardfork_transition] == block_number
+  end
+
+  def within_dao_fork_extra_range?(chain, block_number) do
+    dao_hardfork = chain.engine["Ethash"][:dao_hardfork_transition]
+    block_number <= dao_hardfork && dao_hardfork <= dao_hardfork + 9
   end
 
   @doc """

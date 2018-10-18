@@ -668,18 +668,27 @@ defmodule Blockchain.Block do
   @spec validate(t, Chain.t(), t, DB.db()) :: :valid | {:invalid, [atom()]}
   def validate(block, chain, parent_block, db) do
     with :valid <- validate_parent_block(block, parent_block),
-         expected_difficulty <- get_difficulty(block, parent_block, chain),
-         :valid <-
-           Header.validate(
-             block.header,
-             if(parent_block, do: parent_block.header, else: nil),
-             expected_difficulty,
-             chain.params[:gas_limit_bound_divisor],
-             chain.params[:min_gas_limit]
-           ) do
-      # Pass to holistic validity check
+         :valid <- validate_header(block, parent_block, chain) do
       HolisticValidity.validate(block, chain, parent_block, db)
     end
+  end
+
+  defp validate_header(block, parent_block, chain) do
+    expected_difficulty = get_difficulty(block, parent_block, chain)
+    parent_block_header = if parent_block, do: parent_block.header, else: nil
+
+    validate_dao_extra_data =
+      Chain.support_dao_fork?(chain) &&
+        Chain.within_dao_fork_extra_range?(chain, block.header.number)
+
+    Header.validate(
+      block.header,
+      parent_block_header,
+      expected_difficulty,
+      chain.params[:gas_limit_bound_divisor],
+      chain.params[:min_gas_limit],
+      validate_dao_extra_data
+    )
   end
 
   defp validate_parent_block(block, parent_block) do
@@ -709,7 +718,7 @@ defmodule Blockchain.Block do
   end
 
   defp process_hardfork_specifics(block, chain, db) do
-    if Chain.support_dao_fork?(block.header.number, chain) do
+    if Chain.support_dao_fork?(chain) && Chain.dao_fork?(chain, block.header.number) do
       repo =
         db
         |> Trie.new(block.header.state_root)
