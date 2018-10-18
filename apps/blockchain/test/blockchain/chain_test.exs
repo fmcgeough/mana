@@ -43,6 +43,29 @@ defmodule Blockchain.ChainTest do
     end
   end
 
+  describe "support_dao_fork?/2" do
+    test "returns false if chain does not have dao fork information" do
+      block_number = 1_920_000
+      chain = Chain.test_config("Frontier")
+
+      refute Chain.support_dao_fork?(block_number, chain)
+    end
+
+    test "returns false if block number is not the dao fork's block number" do
+      block_number = 1_919_999
+      chain = Chain.load_chain(:foundation)
+
+      refute Chain.support_dao_fork?(block_number, chain)
+    end
+
+    test "returns true if block number is the dao fork's block number" do
+      block_number = 1_920_000
+      chain = Chain.load_chain(:foundation)
+
+      assert Chain.support_dao_fork?(block_number, chain)
+    end
+  end
+
   describe "after_homestead?/2" do
     test "checks whether or not a block number is after the homestead transition" do
       homestead_transition = 1_150_000

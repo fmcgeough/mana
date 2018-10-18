@@ -699,18 +699,27 @@ defmodule Blockchain.Block do
 
   The trie db refers to where we expect our trie to exist, e.g.
   in `:ets` or `:rocksdb`. See `MerklePatriciaTree.DB`.
-
-  # TODO: Add a rich set of test cases in `block_test.exs`
-
-  ## Examples
-
-      # Create a contract
   """
   @spec add_transactions(t, [Transaction.t()], DB.db(), Chain.t()) :: t
   def add_transactions(block, transactions, db, chain) do
     block
+    |> process_hardfork_specifics(chain, db)
     |> do_add_transactions(transactions, db, chain)
     |> calculate_logs_bloom()
+  end
+
+  defp process_hardfork_specifics(block, chain, db) do
+    if Chain.support_dao_fork?(block.header.number, chain) do
+      repo =
+        db
+        |> Trie.new(block.header.state_root)
+        |> Account.Repo.new()
+        |> Blockchain.Hardfork.Dao.execute(chain)
+
+      put_state(block, repo.state)
+    else
+      block
+    end
   end
 
   @spec do_add_transactions(t, [Transaction.t()], DB.db(), Chain.t(), integer()) :: t
